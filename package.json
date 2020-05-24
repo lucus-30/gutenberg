@@ -1,0 +1,43 @@
+{
+  "name": "gutenberg-app",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon -r dotenv/config ./bin/www",
+    "test": "nyc mocha",
+    "test:watch": "mocha --watch --reporter min",
+    "test:debug": "node --inspect node_modules/mocha/bin/_mocha --watch --no-timeouts"
+  },
+  "dependencies": {
+    "body-parser": "~1.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "cluster": "^0.7.7",
+    "cors": "~2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^5.0.1",
+    "express": "~4.17.1",
+    "http-errors": "~1.6.3",
+    "mocha": "^7.2.0",
+    "morgan": "~1.9.1",
+    "nconf": "^0.10.0",
+    "node-dir": "^0.1.17",
+    "ramda": "^0.27.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5",
+    "swagger-ui-express": "^4.1.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/node": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/register": "^7.7.7",
+    "chai": "^4.2.0",
+    "gulp": "^4.0.2",
+    "gulp-download": "0.0.1",
+    "gulp-flatten": "^0.4.0",
+    "gulp-untar": "^0.0.8",
+    "gulp-unzip": "^1.1.0",
+    "nodemon": "^2.0.2",
+    "nyc": "^15.0.1"
+  }
+}

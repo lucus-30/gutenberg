@@ -1,0 +1,46 @@
+{
+  "info": {
+    "title": "Project Gutenberg",
+    "version": "1.0.0",
+    "description": ""
+  },
+  "host": "gutenberg.local",
+  "schemes": ["https"],
+  "basePath": "/api",
+  "swagger": "2.0",
+  "paths": {
+    "/search/books/{field}/{query}": {
+      "get": {
+        "description": "Query books returning list of results",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "field",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "definitions": {},
+  "responses": {},
+  "parameters": {},
+  "securityDefinitions": {},
+  "tags": []
+}

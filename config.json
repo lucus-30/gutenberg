@@ -1,0 +1,8 @@
+{
+  "es": {
+		"host":"elasticsearch",
+		"port":9200,
+		"books_index": "books",
+		"bundle_index": "b4"
+	}
+}

@@ -1,0 +1,69 @@
+version: "3.3"
+services:
+  elasticsearch:
+    build:
+      context: ./docker/elasticsearch/
+    volumes:
+      - ./docker/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+      - app-network
+
+  nodejs:
+    build: 
+      context: .
+      dockerfile: ./docker/node/Dockerfile
+    container_name: nodejs 
+    restart: unless-stopped
+    environment:
+      - node.name=es01
+      - discovery.type=single-node
+      - NODE_ENV=local
+      - ES_HOST=elasticsearch
+      - PORT=3000
+    depends_on:
+      # - postgres
+      - elasticsearch
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/var/www
+    networks:
+      - app-network
+
+  # postgres:
+  #   image: postgres
+  #   restart: always
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: postgres
+  #   volumes:
+  #     - ./data/db:/var/lib/postgresql/data
+  #   ports:
+  #     - 5432:5432
+  #   networks:
+  #     - app-network
+  
+  webserver:
+    build: 
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    container_name: webserver
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./public:/var/www/html
+    depends_on:
+      - nodejs
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
