@@ -2,8 +2,8 @@
 docker-compose up <br/>
 gulp fetchGutenbergZip <br/>
 ## Convert files
-cd scripts/elasticsearch/ <br/>
 node scripts/RDF/rdf-to-bulk.js resources/data/documents/RDF/ > resources/data/bulk_pg.ld <br/>
+cd scripts/elasticsearch/ <br/>
 yarn install <br/>
 ./bin bulk ../../resources/data/bulk_pg.ldj -i books -t book > ../../resources/data/bulk_result.json <br/>
 
